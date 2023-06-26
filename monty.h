@@ -1,14 +1,11 @@
-#ifndef HEADERFILE.H
-#define HEADERFILE.H
+#ifndef HEADER_H
+#define HEADER_H
 
 #define GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <stderr.h>
-
-
-
 
 
 /**
@@ -22,9 +19,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 
@@ -39,39 +36,30 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/* FUNCTIONS */
+
+void opcod_stack(char & buf_in, size_t lines, stack_t **op_stack);
+void *spush(stack_t **head, unsigned int lines, int vlu);
+void tprnts(stack_t *h, unsigned int line);
+void sswap(stack_s **stack, unsigned int len);
+void aprnts(stack_t *h, unsigned int line);
 
 
-stack_t *get_dnodeint_at_index(stack_t *head, unsigned int index);
-void free_dlistint(stack_t *head);
-stack_t *add_dnodeint_end(stack_t **head, const int n);
-stack_t *add_dnodeint(stack_t **head, const int n);
-size_t print_dlistint(const stack_t *h);
-size_t dlistint_len(const stack_t *h);
-
-
-
-
-
-
-
-
+size_t stck_len(const stack_t *h);
+stack_t *get_node_at_index(stack_t *head, unsigned int index);
+void free_stck(stack_t *head);
+stack_t *qpush(stack_t **head, const int n);
 
 
 
-
-
-
-
-
-/* 
+/*
  * Compilation & Output
  * Your code will be compiled this way:
  * $ gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty
  */
-
 
 #endif
