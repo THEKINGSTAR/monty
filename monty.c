@@ -20,22 +20,22 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		dprintf("USAGE: monty file\n");
+		fprintf(stdout ,"USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
 	fl_read = fopen(argv[1], "r");
 	if (!fl_read)
 	{
-		dprintf("Cant open file %s\n", argv[1]);
+		fprintf(stderr, "Cant open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	lenght = getline(&bufr, bufr_siz, fl_read);
+	lenght = getline(&bufr, &bufr_siz, fl_read);
 	while (lenght > 0)
 	{
 		lines++;
-		opcod_stack(buf, lines, op_stck);
-		lenght = getline(&bufr, bufr_siz, fl_read);
+		opcod_stack(bufr, lines, &op_stck);
+		lenght = getline(&bufr, &bufr_siz, fl_read);
 	}
 	free(bufr);
 	fclose(fl_read);

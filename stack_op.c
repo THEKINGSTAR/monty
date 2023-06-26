@@ -8,7 +8,7 @@
  *
  * RETURN: NO RETURN VALUES
  */
-void opcod_stack(char & buf_in, size_t lines, stack_t **op_stack)
+void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack)
 {
 	int idx;
 	char *cmd, *op;
@@ -31,7 +31,7 @@ void opcod_stack(char & buf_in, size_t lines, stack_t **op_stack)
 		op = strtok(NULL , " ");
 		if (!op)
 		{
-			fprinf(stderr, "L%u: usage: push integer\n", lines);
+			fprintf(stderr, "L%lu: usage: push integer\n", lines);
 			exit(EXIT_FAILURE);
 		}
 		spush(op_stack, lines, atoi(op));
@@ -41,12 +41,12 @@ void opcod_stack(char & buf_in, size_t lines, stack_t **op_stack)
 	{
 		if (!strcmp(stk_op[idx].opcode, cmd))
 		{
-			stck_op[idx].f(op_stack, lines);
+			stk_op[idx].f(op_stack, lines);
 			return;
 		}
 		idx++;
 	}
-	frpintf(stderr, "L%u: unknow opcode: %s\n", lines, cmd);
+	fprintf(stderr, "L%lu: unknow opcode: %s\n", lines, cmd);
 	exit(EXIT_FAILURE);
 
 }
@@ -66,10 +66,10 @@ void opcod_stack(char & buf_in, size_t lines, stack_t **op_stack)
  */
 void *spush(stack_t **head, unsigned int lines, int vlu)
 {
-	stack_t *new_node, *current = *head;
+	stack_t *new_node;
 
 	(void)lines;
-	new_node = malloc(sizeof(dlistint_t));
+	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -79,7 +79,7 @@ void *spush(stack_t **head, unsigned int lines, int vlu)
 
 	new_node->n = vlu;
 	new_node->next = *head;
-	new_nede->prev = NULL;
+	new_node->prev = NULL;
 
 	if (*head != NULL)
 		(*head)->prev = new_node;
@@ -94,7 +94,7 @@ void *spush(stack_t **head, unsigned int lines, int vlu)
  * Write a function that prints top of stack list.
  *
  */
-void tprnts(stack_t *h, unsigned int line)
+void tprnts(stack_t **h, unsigned int line)
 {
 	stack_t *current;
 	
@@ -104,7 +104,7 @@ void tprnts(stack_t *h, unsigned int line)
 		fprintf(stderr, "L%u: can't pint, stack empty", line);
 		exit(EXIT_FAILURE);
 	}
-	fprinf(stdout, "%d\n" , current->n);
+	fprintf(stdout, "%d\n" , current->n);
 }
 
 /**
@@ -112,7 +112,7 @@ void tprnts(stack_t *h, unsigned int line)
  * @stack: stack
  * @len: line of op code
  */
-void sswap(stack_s **stack, unsigned int len)
+void sswap(stack_t **stack, unsigned int len)
 {
 	int result;
 	
@@ -135,12 +135,12 @@ void sswap(stack_s **stack, unsigned int len)
  * Return: the number of nodes
  *
  */
-void aprnts(stack_t *h, unsigned int line)
+void aprnts(stack_t **h, unsigned int line)
 {
         stack_t *current;
+	(void)line;
 
         current = h;
-	void(line);
         if (!h)
         {
                 fprintf(stderr, "L%u: can't pint, stack empty", line);
@@ -148,7 +148,7 @@ void aprnts(stack_t *h, unsigned int line)
         }
         while (current->next != NULL)
         {
-		fprinf(stdout, "%d\n" , current->n);
+		fprintf(stdout, "%d\n" , current->n);
 		current = current->next;
         }
 }

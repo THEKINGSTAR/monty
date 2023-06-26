@@ -12,7 +12,7 @@
 
 size_t stck_len(const stack_t *h)
 {
-	const dlistint_t *current;
+	const stack_t *current;
 	size_t lenght = 0;
 	
 	current = h;
@@ -103,7 +103,7 @@ stack_t *qpush(stack_t **head, const int n)
 {
 	stack_t *new_node;
 	
-	new_node = malloc(sizeof(dlistint_t));
+	new_node = malloc(sizeof(stack_t));
 	
 	
 	if (new_node == NULL)

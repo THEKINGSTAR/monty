@@ -1,11 +1,17 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-#define GNU_SOURCE
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stderr.h>
+#include <sys/types.h>
+#include <errno.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+
+/* #include <stderr.h> */
 
 
 /**
@@ -42,11 +48,16 @@ typedef struct instruction_s
 
 /* FUNCTIONS */
 
-void opcod_stack(char & buf_in, size_t lines, stack_t **op_stack);
+void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack);
 void *spush(stack_t **head, unsigned int lines, int vlu);
-void tprnts(stack_t *h, unsigned int line);
-void sswap(stack_s **stack, unsigned int len);
-void aprnts(stack_t *h, unsigned int line);
+void tprnts(stack_t **h, unsigned int line);
+void sswap(stack_t **stack, unsigned int len);
+void aprnts(stack_t **h, unsigned int line);
+
+
+void ppop(stack_t **stack, unsigned int len);
+void aadd(stack_t **stack, unsigned int len);
+void nnop(stack_t **stack, unsigned int len);
 
 
 size_t stck_len(const stack_t *h);
