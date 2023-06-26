@@ -1,3 +1,6 @@
+#define GNU_SOURCE
+#define  _POSIX_C_SOURCE 200809L
+
 #ifndef HEADER_H
 #define HEADER_H
 
