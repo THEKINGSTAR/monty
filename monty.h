@@ -1,9 +1,5 @@
-#define GNU_SOURCE
-#define  _POSIX_C_SOURCE 200809L
-
-#ifndef HEADER_H
-#define HEADER_H
-
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,8 +9,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
-
-/* #include <stderr.h> */
 
 
 /**

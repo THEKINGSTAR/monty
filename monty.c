@@ -11,7 +11,9 @@
  *
  */
 
-int main(int argc, char *argv[])
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
+
+int main(int argc, char **argv)
 {
 	FILE *fl;
 	char *bufr = NULL;
