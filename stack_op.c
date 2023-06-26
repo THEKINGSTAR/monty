@@ -64,7 +64,7 @@ void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack)
  * NULL if it failed
  *
  */
-void *spush(stack_t **head, unsigned int lines, int vlu)
+void spush(stack_t **head, unsigned int lines, int vlu)
 {
 	stack_t *new_node;
 
@@ -98,7 +98,7 @@ void tprnts(stack_t **h, unsigned int line)
 {
 	stack_t *current;
 	
-	current = h;
+	current = *h;
 	if (!h)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty", line);
@@ -140,7 +140,7 @@ void aprnts(stack_t **h, unsigned int line)
         stack_t *current;
 	(void)line;
 
-        current = h;
+        current = *h;
         if (!h)
         {
                 fprintf(stderr, "L%u: can't pint, stack empty", line);

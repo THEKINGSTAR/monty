@@ -1,5 +1,6 @@
+#define  _POSIX_C_SOURCE 200809L
+#include <stdio.h>
 #include "monty.h"
-
 /**
  * main - the start fo the program
  * main fucntion fo the program
@@ -13,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-	FILE *fl_read;
+	FILE *fl;
 	char *bufr = NULL;
 	size_t bufr_siz = 0, lines = 0, lenght = 0;
 	stack_t *op_stck = NULL;
@@ -24,21 +25,21 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	fl_read = fopen(argv[1], "r");
-	if (!fl_read)
+	fl = fopen(argv[1], "r");
+	if (!fl)
 	{
 		fprintf(stderr, "Cant open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	lenght = getline(&bufr, &bufr_siz, fl_read);
+	lenght = getline(&bufr, &bufr_siz, fl);
 	while (lenght > 0)
 	{
 		lines++;
 		opcod_stack(bufr, lines, &op_stck);
-		lenght = getline(&bufr, &bufr_siz, fl_read);
+		lenght = getline(&bufr, &bufr_siz, fl);
 	}
 	free(bufr);
-	fclose(fl_read);
+	fclose(fl);
 	free_stck(op_stck);
 	return (0);
 }

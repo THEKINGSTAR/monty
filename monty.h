@@ -49,7 +49,7 @@ typedef struct instruction_s
 /* FUNCTIONS */
 
 void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack);
-void *spush(stack_t **head, unsigned int lines, int vlu);
+void spush(stack_t **head, unsigned int lines, int vlu);
 void tprnts(stack_t **h, unsigned int line);
 void sswap(stack_t **stack, unsigned int len);
 void aprnts(stack_t **h, unsigned int line);
