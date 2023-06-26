@@ -14,7 +14,7 @@ size_t stck_len(const stack_t *h)
 {
 	const stack_t *current;
 	size_t lenght = 0;
-	
+
 	current = h;
 	while (current != NULL)
 	{
@@ -71,19 +71,20 @@ stack_t *get_node_at_index(stack_t *head, unsigned int index)
  */
 void free_stck(stack_t *head)
 {
-        stack_t *current, *prev_n;
+	stack_t *current, *prev_n;
 
-        prev_n = NULL;
-        current = head;
-        while (current != NULL)
-        {
-        prev_n = current;
-        current = current->next;
-        prev_n->next = current;
-        prev_n->prev = NULL;
-        free(prev_n);
-        }
-        free(current);
+	prev_n = NULL;
+	current = head;
+
+	while (current != NULL)
+	{
+		prev_n = current;
+		current = current->next;
+		prev_n->next = current;
+		prev_n->prev = NULL;
+		free(prev_n);
+	}
+	free(current);
 }
 
 /**
@@ -102,16 +103,15 @@ void free_stck(stack_t *head)
 stack_t *qpush(stack_t **head, const int n)
 {
 	stack_t *new_node;
-	
+
 	new_node = malloc(sizeof(stack_t));
-	
-	
+
 	if (new_node == NULL)
 		return (NULL);
 	new_node->n = n;
 	new_node->prev = NULL;
 	new_node->next = *head;
-	
+
 	if (*head != NULL)
 	{
 		(*head)->prev = new_node;

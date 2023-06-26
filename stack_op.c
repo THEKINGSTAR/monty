@@ -12,8 +12,7 @@ void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack)
 {
 	int idx;
 	char *cmd, *op;
-	instruction_t stk_op[] =
-	{
+	instruction_t stk_op[] = {
 		{"pall", aprnts},
 		{"pint", tprnts},
 		{"pop", ppop},
@@ -26,9 +25,9 @@ void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack)
 
 	cmd = strtok(buf_in, " ");
 
-	if (!strcmp(cmd , "push"))
+	if (!strcmp(cmd, "push"))
 	{
-		op = strtok(NULL , " ");
+		op = strtok(NULL, " ");
 		if (!op)
 		{
 			fprintf(stderr, "L%lu: usage: push integer\n", lines);
@@ -55,7 +54,8 @@ void opcod_stack(char *buf_in, size_t lines, stack_t **op_stack)
  *  spush - add node function at end
  *
  * @head: pointer to the list
- * @n: the value in the inserted node
+ * @lines: the value in the inserted node
+ * @vlu: value of the input
  *
  * Write a function that adds a new node at the beginning of a dlistint_t list.
  * dlistint_t *add_dnodeint(dlistint_t **head, const int n);
@@ -97,14 +97,14 @@ void spush(stack_t **head, unsigned int lines, int vlu)
 void tprnts(stack_t **h, unsigned int line)
 {
 	stack_t *current;
-	
+
 	current = *h;
 	if (!h)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty", line);
 		exit(EXIT_FAILURE);
 	}
-	fprintf(stdout, "%d\n" , current->n);
+	fprintf(stdout, "%d\n", current->n);
 }
 
 /**
@@ -115,7 +115,7 @@ void tprnts(stack_t **h, unsigned int line)
 void sswap(stack_t **stack, unsigned int len)
 {
 	int result;
-	
+
 	if (!*stack || !(*stack)->next)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", len);
@@ -137,18 +137,19 @@ void sswap(stack_t **stack, unsigned int len)
  */
 void aprnts(stack_t **h, unsigned int line)
 {
-        stack_t *current;
+	stack_t *current;
 	(void)line;
 
-        current = *h;
-        if (!h)
-        {
-                fprintf(stderr, "L%u: can't pint, stack empty", line);
-                exit(EXIT_FAILURE);
-        }
-        while (current->next != NULL)
-        {
-		fprintf(stdout, "%d\n" , current->n);
+	current = *h;
+
+	if (!h)
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty", line);
+		exit(EXIT_FAILURE);
+	}
+	while (current->next != NULL)
+	{
+		fprintf(stdout, "%d\n", current->n);
 		current = current->next;
-        }
+	}
 }

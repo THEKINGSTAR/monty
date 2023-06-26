@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		fprintf(stdout ,"USAGE: monty file\n");
+		fprintf(stdout, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
